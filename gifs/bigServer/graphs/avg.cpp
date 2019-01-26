@@ -18,9 +18,11 @@ int main( int inNumArgs, char **inArgs ) {
 
 
     int n = 4;
-    float runningSum = 0;
+    float runningSumC = 0;
+    float runningSumPer = 0;
     
     float cValues[500];
+    float perValues[500];
     
 
     int v;
@@ -31,15 +33,20 @@ int main( int inNumArgs, char **inArgs ) {
         if( numRead == 4 ) {
             
             cValues[v] = c;
+            perValues[v] = per;
             
             if( numRead == 4 ) {
-                runningSum += c;
+                runningSumC += c;
+                runningSumPer += per;
                 if( v >= n ) {
-                    runningSum -= cValues[v-n];
+                    runningSumC -= cValues[v-n];
+                    runningSumPer -= perValues[v-n];
                     }
                 
-                fprintf( outFile, "%d %d %f %f %f\n", 
-                         i, p, c, per, runningSum / n );
+                fprintf( outFile, "%d %d %f %f %f %f\n", 
+                         i, p, c, per, 
+                         runningSumC / n,
+                         runningSumPer / n );
                 }
             v++;
             }
