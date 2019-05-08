@@ -28,3 +28,9 @@ grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-/\n/g" | sed -e "s/[aeiou
 Print vowel clusters, sorted for number of occurrences:
 
 grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-/\n/g" | sed -e "s/[^aeiouy]/\n/g" | sort | uniq -c | sort -rn
+
+
+
+Strip off numbers from any of these frequency-ordered lists, and format as a C const-string list
+
+| sed -e "s/.*[0-9]* \([a-z]*\)/    \"\1\",/g"
