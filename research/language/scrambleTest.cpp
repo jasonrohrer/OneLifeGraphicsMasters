@@ -434,14 +434,15 @@ static void mapByShuffle( SimpleVector<int> *inOrig,
 
 
 const char *findMatchingSyllable( char *inPiece, char **outLoc,
-                                  int *outIndex ) {
+                                  int *outIndex,
+                                  const char *inSource[] ) {
     for( int i=0; i<NUM_SYLLABLES; i++ ) {
-        char *loc = strstr( inPiece, syllablesByLengthList[ i ] );
+        char *loc = strstr( inPiece, inSource[ i ] );
         
         if( loc != NULL ) {
             *outLoc = loc;
             *outIndex = i;
-            return syllablesByLengthList[ i ];
+            return inSource[ i ];
             }
         }
     return NULL;
@@ -450,7 +451,9 @@ const char *findMatchingSyllable( char *inPiece, char **outLoc,
 
 
 // result destroyed by caller
-char *remapWord( char *inWord ) {
+char *remapWord( char *inWord, 
+                 const char *inSource[],
+                 const char *inDest[] ) {
     SimpleVector<char *> pieces;
     
     pieces.push_back( stringDuplicate( inWord ) );
@@ -478,7 +481,8 @@ char *remapWord( char *inWord ) {
                 int matchIndex = -1;
                 
                 const char *syl =
-                    findMatchingSyllable( piece, &matchLoc, &matchIndex );
+                    findMatchingSyllable( piece, &matchLoc, &matchIndex,
+                                          inSource );
                 
                 if( syl == NULL ) {
                     // no match, nonsense syllable, mark as done
@@ -545,7 +549,7 @@ char *remapWord( char *inWord ) {
         int map = pieceMapping.getElementDirect( p );
         
         if( map != -1 ) {
-            mappedPiece = syllableMapping[ map ];
+            mappedPiece = inDest[ map ];
             }
 
         together.appendElementString( mappedPiece );
@@ -637,11 +641,18 @@ int main() {
         if( numRead > 0 ) {
             char *lower = stringToLowerCase( nextWord );
             
-            char *newWord = remapWord( lower );
+            char *newWord = remapWord( lower, 
+                                       syllablesByLengthList,
+                                       syllableMapping );
             
-            printf( "%s ", newWord );
+            char *backMap = remapWord( newWord,
+                                       syllableMapping, syllablesByLengthList );
+            
+            printf( "%s (%s)", newWord, backMap );
             
             delete [] lower;
+            delete [] newWord;
+            delete [] backMap;
             }
         }
     
