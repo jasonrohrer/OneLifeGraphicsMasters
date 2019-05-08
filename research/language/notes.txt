@@ -34,3 +34,62 @@ grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-/\n/g" | sed -e "s/[^aeio
 Strip off numbers from any of these frequency-ordered lists, and format as a C const-string list
 
 | sed -e "s/.*[0-9]* \([a-z]*\)/    \"\1\",/g"
+
+
+
+
+Print start-of-word syllables, sorted for length:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-.*/\n/g" | sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
+
+
+
+Print end-of-word syllables, sorted for length:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/.*-//g" | sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
+
+
+
+Print middle-of-word syllables, sorted for length:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | grep "-" | sed -e "s/^[^\-]*-//" | grep "-" | sed -e "s/-[^\-]*$//" | sed -e "s/-/\n/g" |  sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
+
+
+
+Print end-of-word syllables (end) sorted for length:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/.*-//" |  sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
+
+
+
+
+
+
+
+
+Print start-of-word consonant clusters, sorted for length:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-.*//g" | grep -v "^[aeiou]" | sed -e "s/^\([^aeiou][^aeiouy]*\)[aeiouy][aeiouy]*.*$/\1/" | sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
+
+
+
+Print middle-of-word starting consonant clusters, sorted for length:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | grep "-" | sed -e "s/^[^\-]*-//" | grep "-" | sed -e "s/-[^\-]*$//" | sed -e "s/-/\n/g" | grep -v "^[aeiou]" | sed -e "s/^\([^aeiou][^aeiouy]*\)[aeiouy][aeiouy]*.*$/\1/" |  sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
+
+
+
+
+Print non-start-of-word syllables (middle and end) sorted for length:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/^[^\-]*-//" | sed -e "s/-/\n/g" |  grep -v "[aeiouy]$"  | sed -e "s/^.*[aeiouy][aeiouy]*\([^aeiou][^aeiou]*\)$/\1/" | sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
+
+
+
+
+// FIXME:  still going through this list and hand-filtering Syllables.txt
+// for bad words
+
+Print end-of-word consonant clusers (may include modifier vowels) sorted for length:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/.*-//" | sed "s/^[^aeiou]*[aeiouy][aeiouy]*//" |  sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
