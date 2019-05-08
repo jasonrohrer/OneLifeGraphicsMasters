@@ -1,0 +1,30 @@
+Syllables list for English found here:
+
+http://www.delphiforfun.org/programs/Syllables.htm
+
+
+Print individual unique syllables, sorted for length:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-/\n/g" | sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
+
+There are 8963 of them.
+
+
+Print them sorted by number of occurrences:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-/\n/g" | sort | uniq -c | sort -rn
+
+
+Print consonant clusters, sorted for length:
+
+cat uniqueSyllables.txt | sed -e "s/[aeiouy]/\n/g" | sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
+
+
+Print consonant clusters, sorted for number of occurrences:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-/\n/g" | sed -e "s/[aeiouy]/\n/g" | sort | uniq -c | sort -rn
+
+
+Print vowel clusters, sorted for number of occurrences:
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-/\n/g" | sed -e "s/[^aeiouy]/\n/g" | sort | uniq -c | sort -rn
