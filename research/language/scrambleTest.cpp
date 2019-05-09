@@ -6,6 +6,8 @@
 #include "vowelClusters.cpp"
 #include "middleConsonantClusters.cpp"
 
+#include <limits.h>
+
 #define NUM_CLUSTER_SETS 4
 
 #define START_I 0
@@ -174,6 +176,99 @@ void mirrorShuffle( SimpleVector<int> *inIndexList ) {
         }
     
     }
+
+
+
+
+// self-reversing shuffle that keeps elements close
+// to their original position in the list
+// inCloseWindow defines how far apart they can get
+void closeMirrorShuffle( SimpleVector<int> *inIndexList,
+                         int inCloseWindow ) {
+
+    int len = inIndexList->size();
+    
+    // indexes into inIndexList that haven't been swapped yet
+    SimpleVector<int> spotsLeft;
+
+    for( int i=0; i<len; i++ ) {
+        spotsLeft.push_back( i );
+        }
+    
+    // if odd, one spot remains unswapped
+    int numPairs = len / 2;
+    for( int p=0; p<numPairs; p++ ) {
+
+        int aLoc = 0;
+        int indA = spotsLeft.getElementDirect( aLoc );
+        
+        spotsLeft.deleteElement( aLoc );
+        
+        SimpleVector<int> closeBLoc;
+        SimpleVector<int> closeBInd;
+        
+        int thisWindSize = inCloseWindow;
+        if( thisWindSize > spotsLeft.size() ) {
+            thisWindSize = spotsLeft.size();
+            }
+
+        int closeDist = 0;
+        while( closeBLoc.size() < thisWindSize ) {
+            int minLoc = -1;
+            int minInd = -1;
+            int minDist = INT_MAX;
+            
+            for( int m=0; m<spotsLeft.size(); m++ ) {
+                
+                int testInd = spotsLeft.getElementDirect( m );
+                
+                int dist = abs( testInd - indA );
+                
+                if( dist > closeDist && dist < minDist ) {
+                    minLoc = m;
+                    minInd = testInd;
+                    minDist = dist;
+                    }
+                }
+
+            if( minLoc == -1 ) {
+                // none found
+                printf( "Non found!\n" );
+                break;
+                }
+
+            closeDist = minDist;
+            closeBLoc.push_back( minLoc );
+            closeBInd.push_back( minInd );
+            }
+        
+        
+        if( closeBInd.size() > 0 ) {
+        
+            int closePick = 
+                randSource.getRandomBoundedInt( 0, closeBInd.size() -1 );
+            int indB = closeBInd.getElementDirect( closePick );
+            
+            spotsLeft.deleteElement( 
+                closeBLoc.getElementDirect( closePick ) );
+        
+            printf( "Swapping index %d with %d\n", indA, indB );
+            
+
+            // swap A and B in main vector
+            int temp = inIndexList->getElementDirect( indA );
+            
+            *( inIndexList->getElement( indA ) ) =
+                inIndexList->getElementDirect( indB );
+            
+            *( inIndexList->getElement( indB ) ) = temp;
+            }
+        }
+    
+    }
+
+
+
 
 
 
@@ -473,7 +568,7 @@ int main() {
         for( int c=0; c<allClusterSizes[s]; c++ ) {
             shuffles[s].push_back( c );
             }
-        mirrorShuffle( &( shuffles[s] ) );
+        closeMirrorShuffle( &( shuffles[s] ), 10 );
         
         for( int c=0; c<allClusterSizes[s]; c++ ) {            
             allMappings[s][ shuffles[s].getElementDirect( c ) ] = 
