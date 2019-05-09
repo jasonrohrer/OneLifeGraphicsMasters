@@ -1,4 +1,6 @@
-const char *startingConsonantClusters[97] = {
+#define NUM_STARTING_CONSONANT_CLUSTERS 97
+
+const char *startingConsonantClusters[ NUM_STARTING_CONSONANT_CLUSTERS ] = {
     "schl",
     "schm",
     "schn",

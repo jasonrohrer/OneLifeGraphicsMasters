@@ -1,4 +1,6 @@
-const char *endingConsonantClusters[340] = {
+#define NUM_ENDING_CONSONANT_CLUSTERS 340
+
+const char *endingConsonantClusters[ NUM_ENDING_CONSONANT_CLUSTERS ] = {
     "nched",
     "ngued",
     "ngues",

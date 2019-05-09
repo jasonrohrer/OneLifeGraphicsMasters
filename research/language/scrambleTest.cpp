@@ -1,353 +1,55 @@
 
-const char *vowelClusters[72] = {
-    "e",
-    "i",
-    "a",
-    "o",
-    "u",
-    "y",
-    "ou",
-    "ea",
-    "io",
-    "oo",
-    "ee",
-    "ie",
-    "ai",
-    "au",
-    "ay",
-    "ui",
-    "ue",
-    "oa",
-    "oi",
-    "ia",
-    "ua",
-    "ei",
-    "ey",
-    "oy",
-    "eu",
-    "iou",
-    "oe",
-    "ae",
-    "ya",
-    "eye",
-    "eau",
-    "eo",
-    "yo",
-    "ye",
-    "uo",
-    "eou",
-    "yea",
-    "you",
-    "uy",
-    "uea",
-    "aye",
-    "yu",
-    "uee",
-    "ieu",
-    "aa",
-    "uai",
-    "iu",
-    "yi",
-    "uoi",
-    "uoy",
-    "yie",
-    "ooe",
-    "eoi",
-    "ayo",
-    "ao",
-    "yeu",
-    "yeo",
-    "uu",
-    "uey",
-    "ueu",
-    "uay",
-    "oye",
-    "oua",
-    "oeu",
-    "uie",
-    "ueue",
-    "oui",
-    "oue",
-    "iao",
-    "aue",
-    "aou",
-    "aie" };
-
-const char *consonantClusters[272] = {
-    "r",
-    "n",
-    "t",
-    "l",
-    "d",
-    "s",
-    "c",
-    "m",
-    "p",
-    "b",
-    "g",
-    "f",
-    "v",
-    "ng",
-    "st",
-    "h",
-    "w",
-    "ss",
-    "bl",
-    "nt",
-    "sh",
-    "k",
-    "tr",
-    "ch",
-    "pr",
-    "z",
-    "th",
-    "ck",
-    "x",
-    "nd",
-    "gr",
-    "j",
-    "pl",
-    "cr",
-    "br",
-    "ll",
-    "cl",
-    "q",
-    "fl",
-    "sp",
-    "nc",
-    "ph",
-    "rd",
-    "dr",
-    "rt",
-    "fr",
-    "gl",
-    "sm",
-    "sc",
-    "rs",
-    "rn",
-    "str",
-    "sl",
-    "ct",
-    "ght",
-    "nk",
-    "ld",
-    "ns",
-    "rk",
-    "mp",
-    "wh",
-    "tch",
-    "sk",
-    "rm",
-    "dg",
-    "sw",
-    "lt",
-    "wn",
-    "sn",
-    "scr",
-    "tl",
-    "dl",
-    "ff",
-    "gh",
-    "ft",
-    "wr",
-    "rg",
-    "gn",
-    "nch",
-    "lk",
-    "thr",
-    "pt",
-    "ps",
-    "kn",
-    "tt",
-    "sq",
-    "rv",
-    "rth",
-    "cs",
-    "mb",
-    "rch",
-    "lv",
-    "rl",
-    "tw",
-    "ts",
-    "rh",
-    "spr",
-    "rc",
-    "wl",
-    "lm",
-    "ws",
-    "rb",
-    "ls",
-    "chr",
-    "sch",
-    "rr",
-    "lf",
-    "shr",
-    "rp",
-    "ms",
-    "pp",
-    "ngs",
-    "nn",
-    "spl",
-    "zl",
-    "nth",
-    "sph",
-    "lp",
-    "kl",
-    "ds",
-    "rst",
-    "mpt",
-    "lth",
-    "gg",
-    "wk",
-    "mn",
-    "zz",
-    "wd",
-    "nx",
-    "nds",
-    "tz",
-    "cks",
-    "rf",
-    "phr",
-    "rds",
-    "kr",
-    "nct",
-    "bt",
-    "rts",
-    "lg",
-    "dd",
-    "chl",
-    "nts",
-    "mm",
-    "dw",
-    "dh",
-    "rsh",
-    "rks",
-    "ngth",
-    "kh",
-    "gs",
-    "nks",
-    "lls",
-    "lch",
-    "wz",
-    "hn",
-    "bs",
-    "sth",
-    "rld",
-    "phl",
-    "mps",
-    "xt",
-    "rtz",
-    "ntz",
-    "ghts",
-    "cz",
-    "wns",
-    "tts",
-    "rnt",
-    "mph",
-    "lms",
-    "lb",
-    "dth",
-    "wth",
-    "vr",
-    "thw",
-    "rrh",
-    "rq",
-    "rns",
-    "rms",
-    "rgh",
-    "hm",
-    "gm",
-    "ffs",
-    "bb",
-    "thm",
-    "sv",
-    "scl",
-    "schl",
-    "rps",
-    "pn",
-    "nz",
-    "ltz",
-    "lsh",
-    "ln",
-    "ks",
-    "hs",
-    "hr",
-    "hl",
-    "fts",
-    "wp",
-    "vt",
-    "tsch",
-    "sz",
-    "schn",
-    "schm",
-    "rct",
-    "ngst",
-    "mt",
-    "lts",
-    "lft",
-    "kw",
-    "hns",
-    "fs",
-    "dst",
-    "cht",
-    "bh",
-    "zw",
-    "xth",
-    "wt",
-    "wnst",
-    "wls",
-    "ttn",
-    "sts",
-    "sf",
-    "schw",
-    "rz",
-    "rw",
-    "rsts",
-    "rscht",
-    "rsch",
-    "rpt",
-    "rmth",
-    "rgn",
-    "rcs",
-    "rck",
-    "rbs",
-    "pth",
-    "psh",
-    "phs",
-    "pf",
-    "nstr",
-    "nst",
-    "nq",
-    "nns",
-    "nkh",
-    "nh",
-    "ndth",
-    "ncts",
-    "mnd",
-    "mbs",
-    "lq",
-    "lpt",
-    "lph",
-    "lfth",
-    "lfs",
-    "ldt",
-    "lds",
-    "lct",
-    "lc",
-    "kj",
-    "ht",
-    "ghth",
-    "fth",
-    "fj",
-    "dz",
-    "dn",
-    "dj",
-    "dds",
-    "cts",
-    "chs",
-    "bw" };
-
 #include "syllablesLength.cpp"
+
+#include "startingConsonantClusters.cpp"
+#include "endingConsonantClusters.cpp"
+#include "vowelClusters.cpp"
+#include "middleConsonantClusters.cpp"
+
+#define NUM_CLUSTER_SETS 4
+
+#define START_I 0
+#define END_I 1
+#define VOWEL_I 2
+#define MID_I 3
+
+
+const int allClusterSizes[ NUM_CLUSTER_SETS ] = 
+{ NUM_STARTING_CONSONANT_CLUSTERS,
+  NUM_ENDING_CONSONANT_CLUSTERS,
+  NUM_VOWEL_CLUSTERS,
+  NUM_MIDDLE_CONSONANT_CLUSTERS };
+
+
+const char **allClusters[ NUM_CLUSTER_SETS ] = 
+{ startingConsonantClusters,
+  endingConsonantClusters,
+  vowelClusters,
+  middleConsonantClusters };
+
+
+typedef struct ClusterIndex {
+        int setIndex;
+        int index;
+    } ClusterIndex;
+
+
+const char *startingMapping[ NUM_STARTING_CONSONANT_CLUSTERS ];
+const char *endingMapping[ NUM_ENDING_CONSONANT_CLUSTERS ];
+const char *vowelMapping[ NUM_VOWEL_CLUSTERS ];
+const char *middleMapping[ NUM_MIDDLE_CONSONANT_CLUSTERS ];
+
+
+const char **allMappings[ NUM_CLUSTER_SETS ] = { startingMapping,
+                                                 endingMapping,
+                                                 vowelMapping,
+                                                 middleMapping };
+
+
+
+
+
+
 
 #include "minorGems/util/SimpleVector.h"
 #include "minorGems/util/stringUtils.h"
@@ -366,9 +68,15 @@ const char vowels[ NUM_VOWELS ] = { 'a', 'e', 'i', 'o', 'u', 'y' };
 
 
 
-static char isVowelStart( const char *inSyllable ) {
+static char isVowelStart( const char *inSyllable, char inAllowY = false ) {
     // y not vowel at start
-    for( int i=0; i<NUM_VOWELS - 1; i++ ) {
+    int limit = NUM_VOWELS - 1;
+    
+    if( inAllowY ) {
+        limit ++;
+        }
+
+    for( int i=0; i<limit; i++ ) {
         if( inSyllable[0] == vowels[i] ) {
             return true;
             }
@@ -562,8 +270,228 @@ char *remapWord( char *inWord,
 
 
 
+// returns pointer to remainder of word after cluster removed
+// outClustIndex = -1 if none found
+char *findInitialCluster( char *inWord,
+                          int inNumSourceClusters,
+                          const char *inSourceClusters[],
+                          int *outClustIndex ) {
+    
+    for( int c=0; c<inNumSourceClusters; c++ ) {
+            
+        const char *clust = inSourceClusters[c];
+            
+        char *loc = strstr( inWord, clust );
+            
+        if( loc == inWord ) {
+            // found at start;
+            *outClustIndex = c;
+                
+            // skip it
+            return &( inWord[ strlen( clust ) ] );
+            }
+        }
+
+    *outClustIndex = -1;
+    return inWord;
+    }
+
+
+
+
+char *remapWordNew( char *inWord, 
+                    const char **inSourceClusters[ NUM_CLUSTER_SETS ],
+                    const char **inDestClusters[ NUM_CLUSTER_SETS ] ) {
+    
+    char *wordWorkingOrig = stringDuplicate( inWord );
+
+    char *wordWorking = wordWorkingOrig;
+    
+
+    // first, find start cons cluster, if there is one
+
+    int startClusterIndex = -1;
+    
+    if( ! isVowelStart( wordWorking ) ) {
+        wordWorking = findInitialCluster( wordWorking, 
+                                          allClusterSizes[ START_I ],
+                                          inSourceClusters[ START_I ],
+                                          &startClusterIndex );
+        
+        /*        
+        for( int c=0; c<allClusterSizes[ START_I ]; c++ ) {
+            
+            const char *clust = inSourceClusters[ START_I ][c];
+            
+            char *loc = strstr( wordWorking, clust );
+            
+            if( loc == wordWorking ) {
+                // found at start;
+                startClusterIndex = c;
+                
+                // skip it
+                wordWorking = &( wordWorking[ strlen( clust ) ] );
+                
+                // done
+                break;
+                }
+            }
+        */
+        }
+    
+
+    // now longest consonant end cluster
+    int endClusterIndex = -1;
+    
+    int remainLen = strlen( wordWorking );
+
+    for( int c=0; c<allClusterSizes[ END_I ]; c++ ) {
+        
+        const char *clust = inSourceClusters[ END_I ][c];
+        
+        char *loc = strstr( wordWorking, clust );
+        
+        if( loc != NULL &&
+            strlen( clust ) ==
+            ( remainLen - ( loc - wordWorking ) ) ) {
+            
+            // match, and at end of word
+            endClusterIndex = c;
+            
+            // terminate here to skip it
+            loc[0] = '\0';
+            }
+        }
+    
+    // now search middle for vowel and consonant clusters
+
+    SimpleVector<ClusterIndex> middleClusterIndices;
+    
+    while( strlen( wordWorking ) > 0 ) {
+        // some letters left
+        
+        int setIndex = -1;
+        int midIndex = -1;
+        
+        if( isVowelStart( wordWorking, true ) ) {
+            setIndex = VOWEL_I;
+            }
+        else {
+            setIndex = MID_I;
+            }
+        
+        wordWorking = findInitialCluster( wordWorking, 
+                                          allClusterSizes[ setIndex ],
+                                          inSourceClusters[ setIndex ],
+                                          &midIndex );
+            
+        if( midIndex != -1 ) {
+            ClusterIndex ci = { setIndex, midIndex };
+            middleClusterIndices.push_back( ci );
+            }
+        else {
+            // none found?
+            printf( "No mid cluster found in remainder of word %s\n",
+                    wordWorking );
+            break;
+            }
+        }
+    
+    
+    SimpleVector<char> mappedWord;
+    
+    if( startClusterIndex != -1 ) {
+        mappedWord.appendElementString( 
+            inDestClusters[ START_I ][ startClusterIndex ] );
+        }
+    
+    for( int m=0; m < middleClusterIndices.size(); m++ ) {
+        ClusterIndex ci = middleClusterIndices.getElementDirect( m );
+        
+        mappedWord.appendElementString(
+            inDestClusters[ ci.setIndex ][ ci.index ] );
+        }
+    // add any remaining portion of the word, which could not
+    // be matched to mid clusters
+    // (this is an error condition)
+    if( strlen( wordWorking ) > 0 ) {
+        mappedWord.appendElementString( wordWorking );
+        }
+    if( endClusterIndex != -1 ) {
+        mappedWord.appendElementString( 
+            inDestClusters[ END_I ][ endClusterIndex ] );
+        }
+    
+    delete [] wordWorkingOrig;
+    
+    return mappedWord.getElementString();
+    }
+
+                    
+
+
 
 int main() {
+    
+    SimpleVector<int> shuffles[4];
+    
+
+    for( int s=0; s<NUM_CLUSTER_SETS; s++ ) {
+        for( int c=0; c<allClusterSizes[s]; c++ ) {
+            shuffles[s].push_back( c );
+            }
+        shuffle( &( shuffles[s] ) );
+        
+        for( int c=0; c<allClusterSizes[s]; c++ ) {            
+            allMappings[s][c] = 
+                allClusters[s][ shuffles[s].getElementDirect( c ) ];
+            }
+        }
+
+
+    int numRead = 1;
+    char nextWord[100];
+    
+    while(numRead > 0 ) {
+        numRead = scanf( "%99s", nextWord );
+        
+        if( numRead > 0 ) {
+            char *lower = stringToLowerCase( nextWord );
+            
+            /*
+            char *newWord = remapWord( lower, 
+                                       syllablesByLengthList,
+                                       syllableMapping );
+            
+            char *backMap = remapWord( newWord,
+                                       syllableMapping, syllablesByLengthList );
+            */
+
+            char *newWord = remapWordNew( lower, 
+                                          allClusters,
+                                          allMappings);
+            
+            char *backMap = remapWordNew( newWord,
+                                          allMappings, 
+                                          allClusters );
+            
+            printf( "%s (%s)", newWord, backMap );
+            
+            delete [] lower;
+            delete [] newWord;
+            delete [] backMap;
+            }
+        }
+    
+    
+
+    return 0;
+    }
+
+
+
+
+int mainOld() {
     
     //SimpleVector<const char*> allSyllables;
     

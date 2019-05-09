@@ -1,5 +1,6 @@
+#define NUM_VOWEL_CLUSTERS 131
 
-const char *vowelClusters[131] = {
+const char *vowelClusters[ NUM_VOWEL_CLUSTERS ] = {
     "aiia",
     "ayee",
     "ayey",

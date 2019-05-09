@@ -1,4 +1,6 @@
-const char *middleConsonantClusters[1108] = {
+#define NUM_MIDDLE_CONSONANT_CLUSTERS 1107
+
+const char *middleConsonantClusters[ NUM_MIDDLE_CONSONANT_CLUSTERS ] = {
     "ckscr",
     "ckstr",
     "ckthr",
@@ -677,7 +679,6 @@ const char *middleConsonantClusters[1108] = {
     "rpr",
     "rps",
     "rpt",
-    "r",-    "r",
     "rrh",
     "rsb",
     "rsc",
