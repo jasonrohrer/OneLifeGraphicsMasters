@@ -127,3 +127,46 @@ grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/.*-//" | sed "s/^[aeiou]*[
 // turn unnumbered syllables into c array list
 
 | sed -e "s/\([a-z]*\)/    \"\1\",/g"
+
+
+
+
+
+
+
+
+
+
+
+
+// occurrence counts
+
+
+
+// start cons sorted by length with occurrence count
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-.*//g" | grep -v "^[aeiou]" | sed -e "s/^\([^aeiou][^aeiouy]*\)[aeiouy][aeiouy]*.*$/\1/" | sort | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | uniq -c |  more
+
+
+
+// vowels sorted by length with occurrence count
+
+grep "=" Syllables.txt | sed -e "s/=.*//" | sed -e "s/^[^aeiou][^aeiou]*/|/" | sed -e "s/[^aeiouy][^aeiouy]*/|/g" | sed -e "s/|$//" | sed -e "s/|/\n/g" | sort | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | grep -v "^$" |  uniq -c | more
+
+
+// mid-word
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/^[^\-]*-//" | sed -e "s/-/\n/g" |  grep -v "[aeiouy]$"  | sed -e "s/^.*[aeiouy][aeiouy]*\([^aeiou][^aeiou]*\)$/\1/" | sort | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | uniq -c | more
+
+
+
+// end word
+
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/.*-//" | sed "s/^[aeiou]*[^aeiou]*[aeiouy][aeiouy]*//" |  grep -v "y" | sort | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | grep -v "^$" | uniq -c | more
+
+
+
+// NEXT
+// FIXME
+
+// Export c-code array list (integer counts with cluster as comment)
