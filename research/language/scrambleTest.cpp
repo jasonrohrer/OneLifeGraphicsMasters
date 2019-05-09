@@ -3,22 +3,25 @@
 
 #include "startingConsonantClusters.cpp"
 #include "endingConsonantClusters.cpp"
+#include "startingVowelClusters.cpp"
 #include "vowelClusters.cpp"
 #include "middleConsonantClusters.cpp"
 
 #include <limits.h>
 
-#define NUM_CLUSTER_SETS 4
+#define NUM_CLUSTER_SETS 5
 
 #define START_I 0
 #define END_I 1
-#define VOWEL_I 2
-#define MID_I 3
+#define START_VOWEL_I 2
+#define VOWEL_I 3
+#define MID_I 4
 
 
 const int allClusterSizes[ NUM_CLUSTER_SETS ] = 
 { NUM_STARTING_CONSONANT_CLUSTERS,
   NUM_ENDING_CONSONANT_CLUSTERS,
+  NUM_STARTING_VOWEL_CLUSTERS,
   NUM_VOWEL_CLUSTERS,
   NUM_MIDDLE_CONSONANT_CLUSTERS };
 
@@ -26,6 +29,7 @@ const int allClusterSizes[ NUM_CLUSTER_SETS ] =
 const char **allClusters[ NUM_CLUSTER_SETS ] = 
 { startingConsonantClusters,
   endingConsonantClusters,
+  startingVowelClusters,
   vowelClusters,
   middleConsonantClusters };
 
@@ -38,25 +42,31 @@ typedef struct ClusterIndex {
 
 const char *startingMapping[ NUM_STARTING_CONSONANT_CLUSTERS ];
 const char *endingMapping[ NUM_ENDING_CONSONANT_CLUSTERS ];
+const char *startingVowelMapping[ NUM_STARTING_VOWEL_CLUSTERS ];
 const char *vowelMapping[ NUM_VOWEL_CLUSTERS ];
 const char *middleMapping[ NUM_MIDDLE_CONSONANT_CLUSTERS ];
 
 
-const char **allMappings[ NUM_CLUSTER_SETS ] = { startingMapping,
-                                                 endingMapping,
-                                                 vowelMapping,
-                                                 middleMapping };
+const char **allMappings[ NUM_CLUSTER_SETS ] = 
+{ startingMapping,
+  endingMapping,
+  startingVowelMapping,
+  vowelMapping,
+  middleMapping };
 
 
 const char *startingBackMapping[ NUM_STARTING_CONSONANT_CLUSTERS ];
 const char *endingBackMapping[ NUM_ENDING_CONSONANT_CLUSTERS ];
+const char *startingVowelBackMapping[ NUM_STARTING_VOWEL_CLUSTERS ];
 const char *vowelBackMapping[ NUM_VOWEL_CLUSTERS ];
 const char *middleBackMapping[ NUM_MIDDLE_CONSONANT_CLUSTERS ];
 
-const char **allBackMappings[ NUM_CLUSTER_SETS ] = { startingBackMapping,
-                                                     endingBackMapping,
-                                                     vowelBackMapping,
-                                                     middleBackMapping };
+const char **allBackMappings[ NUM_CLUSTER_SETS ] = 
+{ startingBackMapping,
+  endingBackMapping,
+  startingVowelBackMapping,
+  vowelBackMapping,
+  middleBackMapping };
 
 
 
@@ -252,7 +262,7 @@ void closeMirrorShuffle( SimpleVector<int> *inIndexList,
             spotsLeft.deleteElement( 
                 closeBLoc.getElementDirect( closePick ) );
         
-            printf( "Swapping index %d with %d\n", indA, indB );
+            //printf( "Swapping index %d with %d\n", indA, indB );
             
 
             // swap A and B in main vector
@@ -467,6 +477,21 @@ char *remapWordNew( char *inWord,
                                           &startClusterIndex );
         }
     
+    int startVowelClusterIndex = -1;
+    
+    if( startClusterIndex == -1 ) {
+        // starts with a vowel, treat it separately
+        
+        // (so we don't map it into a y-cluster by accident, breakign
+        // reverse mapping)
+        wordWorking = findInitialCluster( 
+            wordWorking, 
+            allClusterSizes[ START_VOWEL_I ],
+            inSourceClusters[ START_VOWEL_I ],
+            &startVowelClusterIndex );
+        }
+    
+
 
     // now longest consonant end cluster
     int endClusterIndex = -1;
@@ -532,6 +557,10 @@ char *remapWordNew( char *inWord,
         mappedWord.appendElementString( 
             inDestClusters[ START_I ][ startClusterIndex ] );
         }
+    if( startVowelClusterIndex != -1 ) {
+        mappedWord.appendElementString( 
+            inDestClusters[ START_VOWEL_I ][ startVowelClusterIndex ] );
+        }
     
     for( int m=0; m < middleClusterIndices.size(); m++ ) {
         ClusterIndex ci = middleClusterIndices.getElementDirect( m );
@@ -561,7 +590,7 @@ char *remapWordNew( char *inWord,
 
 int main() {
     
-    SimpleVector<int> shuffles[4];
+    SimpleVector<int> shuffles[NUM_CLUSTER_SETS];
     
 
     for( int s=0; s<NUM_CLUSTER_SETS; s++ ) {
