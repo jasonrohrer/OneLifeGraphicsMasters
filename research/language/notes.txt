@@ -73,6 +73,13 @@ grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/-.*//g" | grep -v "^[aeiou
 
 
 
+
+// FIXME:
+
+For these, we should look at whole words, not syllables
+Should break up words by vowels and see what's in the middle
+
+
 Print middle-of-word starting consonant clusters, sorted for length:
 
 grep "=" Syllables.txt | sed -e "s/.*=//" | grep "-" | sed -e "s/^[^\-]*-//" | grep "-" | sed -e "s/-[^\-]*$//" | sed -e "s/-/\n/g" | grep -v "^[aeiou]" | sed -e "s/^\([^aeiou][^aeiouy]*\)[aeiouy][aeiouy]*.*$/\1/" |  sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
@@ -87,9 +94,7 @@ grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/^[^\-]*-//" | sed -e "s/-/
 
 
 
-// FIXME:  still going through this list and hand-filtering Syllables.txt
-// for bad words
 
 Print end-of-word consonant clusers (may include modifier vowels) sorted for length:
 
-grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/.*-//" | sed "s/^[^aeiou]*[aeiouy][aeiouy]*//" |  sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
+grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/.*-//" | sed "s/^[aeiou]*[^aeiou]*[aeiouy][aeiouy]*//" |  grep -v "y" | sort | uniq | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | more
