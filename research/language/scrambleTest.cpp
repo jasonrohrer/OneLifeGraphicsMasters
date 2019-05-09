@@ -46,6 +46,17 @@ const char **allMappings[ NUM_CLUSTER_SETS ] = { startingMapping,
                                                  middleMapping };
 
 
+const char *startingBackMapping[ NUM_STARTING_CONSONANT_CLUSTERS ];
+const char *endingBackMapping[ NUM_ENDING_CONSONANT_CLUSTERS ];
+const char *vowelBackMapping[ NUM_VOWEL_CLUSTERS ];
+const char *middleBackMapping[ NUM_MIDDLE_CONSONANT_CLUSTERS ];
+
+const char **allBackMappings[ NUM_CLUSTER_SETS ] = { startingBackMapping,
+                                                     endingBackMapping,
+                                                     vowelBackMapping,
+                                                     middleBackMapping };
+
+
 
 
 
@@ -317,26 +328,6 @@ char *remapWordNew( char *inWord,
                                           allClusterSizes[ START_I ],
                                           inSourceClusters[ START_I ],
                                           &startClusterIndex );
-        
-        /*        
-        for( int c=0; c<allClusterSizes[ START_I ]; c++ ) {
-            
-            const char *clust = inSourceClusters[ START_I ][c];
-            
-            char *loc = strstr( wordWorking, clust );
-            
-            if( loc == wordWorking ) {
-                // found at start;
-                startClusterIndex = c;
-                
-                // skip it
-                wordWorking = &( wordWorking[ strlen( clust ) ] );
-                
-                // done
-                break;
-                }
-            }
-        */
         }
     
 
@@ -443,7 +434,9 @@ int main() {
         shuffle( &( shuffles[s] ) );
         
         for( int c=0; c<allClusterSizes[s]; c++ ) {            
-            allMappings[s][c] = 
+            allMappings[s][ shuffles[s].getElementDirect( c ) ] = 
+                allClusters[s][ c ];
+            allBackMappings[s][ c ] =
                 allClusters[s][ shuffles[s].getElementDirect( c ) ];
             }
         }
@@ -472,8 +465,8 @@ int main() {
                                           allMappings);
             
             char *backMap = remapWordNew( newWord,
-                                          allMappings, 
-                                          allClusters );
+                                          allClusters,
+                                          allBackMappings );
             
             printf( "%s (%s)", newWord, backMap );
             
