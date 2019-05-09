@@ -134,6 +134,48 @@ void shuffle( SimpleVector<int> *inIndexList ) {
     }
 
 
+// self-reversing shuffle
+// A maps to B and B maps to A
+// pairs of indices switch places
+void mirrorShuffle( SimpleVector<int> *inIndexList ) {
+    int len = inIndexList->size();
+    
+    // indexes into inIndexList that haven't been swapped yet
+    SimpleVector<int> spotsLeft;
+
+    for( int i=0; i<len; i++ ) {
+        spotsLeft.push_back( i );
+        }
+    
+    // if odd, one spot remains unswapped
+    int numPairs = len / 2;
+    for( int p=0; p<numPairs; p++ ) {
+        
+        int aLoc = 
+            randSource.getRandomBoundedInt( 0, spotsLeft.size() -1 );
+        int indA = spotsLeft.getElementDirect( aLoc );
+        
+        spotsLeft.deleteElement( aLoc );
+        
+        
+        int bLoc = 
+            randSource.getRandomBoundedInt( 0, spotsLeft.size() -1 );
+        int indB = spotsLeft.getElementDirect( bLoc );
+
+        spotsLeft.deleteElement( bLoc );
+        
+        // swap A and B in main vector
+        int temp = inIndexList->getElementDirect( indA );
+        
+        *( inIndexList->getElement( indA ) ) =
+            inIndexList->getElementDirect( indB );
+        
+        *( inIndexList->getElement( indB ) ) = temp;
+        }
+    
+    }
+
+
 
 const char *syllableMapping[ NUM_SYLLABLES ];
     
@@ -431,7 +473,7 @@ int main() {
         for( int c=0; c<allClusterSizes[s]; c++ ) {
             shuffles[s].push_back( c );
             }
-        shuffle( &( shuffles[s] ) );
+        mirrorShuffle( &( shuffles[s] ) );
         
         for( int c=0; c<allClusterSizes[s]; c++ ) {            
             allMappings[s][ shuffles[s].getElementDirect( c ) ] = 
@@ -450,15 +492,6 @@ int main() {
         
         if( numRead > 0 ) {
             char *lower = stringToLowerCase( nextWord );
-            
-            /*
-            char *newWord = remapWord( lower, 
-                                       syllablesByLengthList,
-                                       syllableMapping );
-            
-            char *backMap = remapWord( newWord,
-                                       syllableMapping, syllablesByLengthList );
-            */
 
             char *newWord = remapWordNew( lower, 
                                           allClusters,
@@ -468,7 +501,8 @@ int main() {
                                           allClusters,
                                           allBackMappings );
             
-            printf( "%s (%s)", newWord, backMap );
+            //printf( "%s (%s)", newWord, backMap );
+            printf( "%s ", newWord );
             
             delete [] lower;
             delete [] newWord;
