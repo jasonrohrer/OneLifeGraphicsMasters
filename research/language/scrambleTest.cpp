@@ -356,9 +356,10 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
                 
 
                 if( dist < minDist &&
-                    dist >= lastClosestSeenDist && 
-                    // closer, and not already on our list
-                    closeBInd.getElementIndex( testInd ) == -1 ) {
+                    ( dist > lastClosestSeenDist ||
+                      ( dist == lastClosestSeenDist &&
+                        // not already on our list
+                        closeBLoc.getElementIndex( m ) == -1 ) ) ) {
                     
                     minLoc = m;
                     minInd = testInd;
