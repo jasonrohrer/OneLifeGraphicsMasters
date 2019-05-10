@@ -318,7 +318,10 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
     int numPairs = len / 2;
     for( int p=0; p<numPairs; p++ ) {
 
-        int aLoc = 0;
+        int numSpotsLeft = spotsLeft.size();
+        
+        // start at end, because deleteElement cheaper there
+        int aLoc = numSpotsLeft - 1;
         int indA = spotsLeft.getElementDirect( aLoc );
         
         int freqA = inFreq[ inIndexList->getElementDirect( indA ) ];
@@ -333,12 +336,16 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
             thisWindSize = spotsLeft.size();
             }
 
+        int lastClosestSeenDist = 0;
+        
         while( closeBLoc.size() < thisWindSize ) {
             int minLoc = -1;
             int minInd = -1;
             int minDist = INT_MAX;
             
-            for( int m=0; m<spotsLeft.size(); m++ ) {
+            // run backwards, to find stuff near aLoc, which is
+            // most likely to have similar frequency
+            for( int m=numSpotsLeft - 1; m>=0; m-- ) {
                 
                 int testInd = spotsLeft.getElementDirect( m );
 
@@ -347,13 +354,21 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
                 
                 int dist = abs( testFreq - freqA );
                 
-                if( dist < minDist && 
+
+                if( dist < minDist &&
+                    dist >= lastClosestSeenDist && 
                     // closer, and not already on our list
                     closeBInd.getElementIndex( testInd ) == -1 ) {
                     
                     minLoc = m;
                     minInd = testInd;
                     minDist = dist;
+                    
+                    if( dist == lastClosestSeenDist ) {
+                        // tie for last seen, stop here
+                        // can't get better than this
+                        break;
+                        }
                     }
                 }
 
@@ -363,6 +378,8 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
                 break;
                 }
 
+            lastClosestSeenDist = minDist;
+            
             closeBLoc.push_back( minLoc );
             closeBInd.push_back( minInd );
             }
@@ -708,6 +725,8 @@ char *remapWordNew( char *inWord,
 
 int main() {
     
+    //for( int i=0; i<1000; i++ ) {
+        
     SimpleVector<int> shuffles[NUM_CLUSTER_SETS];
     
 
@@ -725,9 +744,22 @@ int main() {
             allBackMappings[s][ c ] =
                 allClusters[s][ shuffles[s].getElementDirect( c ) ];
             }
+
+        /*
+        for( int c=0; c<allClusterSizes[s]; c++ ) {            
+            printf( "Mapping %s (%d) => %s (%d)\n",
+                    allClusters[s][ c ],
+                    allClustersFreq[s][c],
+                    allMappings[s][c],
+                    allClustersFreq[s][shuffles[s].getElementDirect( c ) ] );
+            }
+        */
         }
 
-
+    //}
+    
+    //return 0;
+    
     int numRead = 1;
     char nextWord[100];
     
