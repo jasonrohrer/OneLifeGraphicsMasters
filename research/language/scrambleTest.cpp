@@ -7,6 +7,14 @@
 #include "vowelClusters.cpp"
 #include "middleConsonantClusters.cpp"
 
+// these must be included after
+#include "startingConsonantClustersFreq.cpp"
+#include "endingConsonantClustersFreq.cpp"
+#include "startingVowelClustersFreq.cpp"
+#include "vowelClustersFreq.cpp"
+#include "middleConsonantClustersFreq.cpp"
+
+
 #include <limits.h>
 
 #define NUM_CLUSTER_SETS 5

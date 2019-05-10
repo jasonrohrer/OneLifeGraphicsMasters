@@ -166,7 +166,10 @@ grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/.*-//" | sed "s/^[aeiou]*[
 
 
 
-// NEXT
-// FIXME
 
 // Export c-code array list (integer counts with cluster as comment)
+
+
+// turn numberd syllables into c array list of numbers with comments
+
+| sed -e "s/[ ]*\([0-9]*\) \([a-z]*\)/    \\1\,      \/\/ \2/g"
