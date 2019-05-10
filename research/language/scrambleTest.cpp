@@ -747,8 +747,23 @@ char *remapWordNew( char *inWord,
 
 
 
-int main() {
+int main( int inNumArgs, char **inArgs ) {
     
+    int seed = 12483;
+    
+    if( inNumArgs > 1 ) {
+        sscanf( inArgs[1], "%d", &seed );
+        }
+    randSource.reseed( seed );
+    
+    int closeSetSize = 4;
+    
+    if( inNumArgs > 2 ) {
+        sscanf( inArgs[2], "%d", &closeSetSize );
+        }
+
+    
+
     //for( int i=0; i<1000; i++ ) {
         
     SimpleVector<int> shuffles[NUM_CLUSTER_SETS];
@@ -760,7 +775,7 @@ int main() {
             }
         closeFreqMirrorShuffle( &( shuffles[s] ), 
                                 allClustersFreq[ s ],
-                                4 );
+                                closeSetSize );
         
         for( int c=0; c<allClusterSizes[s]; c++ ) {            
             allMappings[s][ shuffles[s].getElementDirect( c ) ] = 
@@ -810,7 +825,7 @@ int main() {
             }
         }
     
-    
+    printf( "\n" );
 
     return 0;
     }
