@@ -42,6 +42,14 @@ const char **allClusters[ NUM_CLUSTER_SETS ] =
   middleConsonantClusters };
 
 
+const int *allClustersFreq[ NUM_CLUSTER_SETS ] = 
+{ startingConsonantClustersFreq,
+  endingConsonantClustersFreq,
+  startingVowelClustersFreq,
+  vowelClustersFreq,
+  middleConsonantClustersFreq };
+
+
 typedef struct ClusterIndex {
         int setIndex;
         int index;
@@ -260,6 +268,108 @@ void closeMirrorShuffle( SimpleVector<int> *inIndexList,
             closeBInd.push_back( minInd );
             }
         
+        
+        if( closeBInd.size() > 0 ) {
+        
+            int closePick = 
+                randSource.getRandomBoundedInt( 0, closeBInd.size() -1 );
+            int indB = closeBInd.getElementDirect( closePick );
+            
+            spotsLeft.deleteElement( 
+                closeBLoc.getElementDirect( closePick ) );
+        
+            //printf( "Swapping index %d with %d\n", indA, indB );
+            
+
+            // swap A and B in main vector
+            int temp = inIndexList->getElementDirect( indA );
+            
+            *( inIndexList->getElement( indA ) ) =
+                inIndexList->getElementDirect( indB );
+            
+            *( inIndexList->getElement( indB ) ) = temp;
+            }
+        }
+    
+    }
+
+
+
+
+
+
+// self-reversing shuffle that swaps elements with others
+// in list that have closest freuqency
+// inCloseWindow defines how far apart they can get
+void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
+                             const int *inFreq,
+                             int inCloseWindow ) {
+
+    int len = inIndexList->size();
+    
+    // indexes into inIndexList that haven't been swapped yet
+    SimpleVector<int> spotsLeft;
+
+    for( int i=0; i<len; i++ ) {
+        spotsLeft.push_back( i );
+        }
+    
+    // if odd, one spot remains unswapped
+    int numPairs = len / 2;
+    for( int p=0; p<numPairs; p++ ) {
+
+        int aLoc = 0;
+        int indA = spotsLeft.getElementDirect( aLoc );
+        
+        int freqA = inFreq[ inIndexList->getElementDirect( indA ) ];
+
+        spotsLeft.deleteElement( aLoc );
+        
+        SimpleVector<int> closeBLoc;
+        SimpleVector<int> closeBInd;
+        
+        int thisWindSize = inCloseWindow;
+        if( thisWindSize > spotsLeft.size() ) {
+            thisWindSize = spotsLeft.size();
+            }
+
+        while( closeBLoc.size() < thisWindSize ) {
+            int minLoc = -1;
+            int minInd = -1;
+            int minDist = INT_MAX;
+            
+            for( int m=0; m<spotsLeft.size(); m++ ) {
+                
+                int testInd = spotsLeft.getElementDirect( m );
+
+                int testFreq = 
+                    inFreq[ inIndexList->getElementDirect( testInd ) ];
+                
+                int dist = abs( testFreq - freqA );
+                
+                if( dist < minDist && 
+                    // closer, and not already on our list
+                    closeBInd.getElementIndex( testInd ) == -1 ) {
+                    
+                    minLoc = m;
+                    minInd = testInd;
+                    minDist = dist;
+                    }
+                }
+
+            if( minLoc == -1 ) {
+                // none found
+                printf( "Non found!\n" );
+                break;
+                }
+
+            closeBLoc.push_back( minLoc );
+            closeBInd.push_back( minInd );
+            }
+        
+
+        
+
         
         if( closeBInd.size() > 0 ) {
         
@@ -605,7 +715,9 @@ int main() {
         for( int c=0; c<allClusterSizes[s]; c++ ) {
             shuffles[s].push_back( c );
             }
-        closeMirrorShuffle( &( shuffles[s] ), 10 );
+        closeFreqMirrorShuffle( &( shuffles[s] ), 
+                                allClustersFreq[ s ],
+                                1 );
         
         for( int c=0; c<allClusterSizes[s]; c++ ) {            
             allMappings[s][ shuffles[s].getElementDirect( c ) ] = 
