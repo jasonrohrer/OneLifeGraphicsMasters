@@ -156,7 +156,9 @@ grep "=" Syllables.txt | sed -e "s/=.*//" | sed -e "s/^[^aeiou][^aeiou]*/|/" | s
 
 // mid-word
 
-grep "=" Syllables.txt | sed -e "s/.*=//" | sed -e "s/^[^\-]*-//" | sed -e "s/-/\n/g" |  grep -v "[aeiouy]$"  | sed -e "s/^.*[aeiouy][aeiouy]*\([^aeiou][^aeiou]*\)$/\1/" | sort | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- | uniq -c | more
+grep "=" Syllables.txt | sed -e "s/=.*//" | sed -e "s/^[aeiou]*/|/" | sed -e "s/[aeiouy][aeiouy]*/|/g" | sed -e "s/|[^|][^|]*$/|/" | sed -e "s/^|//" | sed -e "s/|$//" | grep -v "^$" | sed -e "s/|/\n/g" | sort | awk '{ print length, $0 }' | sort -rn -s | cut -d" " -f2- |  grep -v "^$" | uniq -c | more
+
+
 
 
 
