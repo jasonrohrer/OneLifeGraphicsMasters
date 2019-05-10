@@ -297,6 +297,14 @@ void closeMirrorShuffle( SimpleVector<int> *inIndexList,
 
 
 
+typedef struct SpotSortRecord {
+        int m;
+        int freq;
+    } SpotSortRecord;
+
+#include "minorGems/util/MinPriorityQueue.h"
+    
+
 
 // self-reversing shuffle that swaps elements with others
 // in list that have closest freuqency
@@ -311,9 +319,23 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
     SimpleVector<int> spotsLeft;
     SimpleVector<int> spotsFreq;
     
+    // sort these by freq to make operations below faster
+    // more likely to find equal-value freqs near each other
+    // when searching in inner loop below
+
+    SimpleVector<SpotSortRecord> sortRecords( len );
+    
+    MinPriorityQueue<SpotSortRecord> sortQueue;
     for( int i=0; i<len; i++ ) {
-        spotsLeft.push_back( i );
-        spotsFreq.push_back( inFreq[ i ] );
+        SpotSortRecord r = { i, inFreq[i] };
+        sortQueue.insert( r, r.freq );
+        }
+
+    for( int i=0; i<len; i++ ) {
+        SpotSortRecord r = sortQueue.removeMin();
+        
+        spotsLeft.push_back( r.m );
+        spotsFreq.push_back( r.freq );
         }
     
     // if odd, one spot remains unswapped
