@@ -365,15 +365,12 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
         
         while( closeBLoc.size() < thisWindSize ) {
             int minLoc = -1;
-            int minInd = -1;
             int minDist = INT_MAX;
             
             // run backwards, to find stuff near aLoc, which is
             // most likely to have similar frequency
             for( int m=numSpotsLeft - 1; m>=0; m-- ) {
                 
-                int testInd = spotsLeft.getElementDirect( m );
-
                 int testFreq = spotsFreq.getElementDirect( m );
                 
                 int dist = abs( testFreq - freqA );
@@ -386,7 +383,6 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
                         closeBLoc.getElementIndex( m ) == -1 ) ) ) {
                     
                     minLoc = m;
-                    minInd = testInd;
                     minDist = dist;
                     
                     if( dist == lastClosestSeenDist ) {
@@ -406,7 +402,7 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
             lastClosestSeenDist = minDist;
             
             closeBLoc.push_back( minLoc );
-            closeBInd.push_back( minInd );
+            closeBInd.push_back( spotsLeft.getElementDirect( minLoc ) );
             }
         
 
