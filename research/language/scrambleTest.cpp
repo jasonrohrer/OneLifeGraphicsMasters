@@ -352,6 +352,7 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
 
         spotsLeft.deleteElement( aLoc );
         spotsFreq.deleteElement( aLoc );
+        numSpotsLeft --;
         
         SimpleVector<int> closeBLoc;
         SimpleVector<int> closeBInd;
