@@ -736,7 +736,7 @@ int main() {
             }
         closeFreqMirrorShuffle( &( shuffles[s] ), 
                                 allClustersFreq[ s ],
-                                1 );
+                                4 );
         
         for( int c=0; c<allClusterSizes[s]; c++ ) {            
             allMappings[s][ shuffles[s].getElementDirect( c ) ] = 
