@@ -371,7 +371,7 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
             // most likely to have similar frequency
             for( int m=numSpotsLeft - 1; m>=0; m-- ) {
                 
-                int testFreq = spotsFreq.getElementDirect( m );
+                int testFreq = spotsFreq.getElementDirectFast( m );
                 
                 int dist = abs( testFreq - freqA );
                 
