@@ -309,9 +309,11 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
     
     // indexes into inIndexList that haven't been swapped yet
     SimpleVector<int> spotsLeft;
-
+    SimpleVector<int> spotsFreq;
+    
     for( int i=0; i<len; i++ ) {
         spotsLeft.push_back( i );
+        spotsFreq.push_back( inFreq[ i ] );
         }
     
     // if odd, one spot remains unswapped
@@ -324,9 +326,10 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
         int aLoc = numSpotsLeft - 1;
         int indA = spotsLeft.getElementDirect( aLoc );
         
-        int freqA = inFreq[ inIndexList->getElementDirect( indA ) ];
+        int freqA = spotsFreq.getElementDirect( aLoc );
 
         spotsLeft.deleteElement( aLoc );
+        spotsFreq.deleteElement( aLoc );
         
         SimpleVector<int> closeBLoc;
         SimpleVector<int> closeBInd;
@@ -349,8 +352,7 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
                 
                 int testInd = spotsLeft.getElementDirect( m );
 
-                int testFreq = 
-                    inFreq[ inIndexList->getElementDirect( testInd ) ];
+                int testFreq = spotsFreq.getElementDirect( m );
                 
                 int dist = abs( testFreq - freqA );
                 
@@ -395,9 +397,11 @@ void closeFreqMirrorShuffle( SimpleVector<int> *inIndexList,
                 randSource.getRandomBoundedInt( 0, closeBInd.size() -1 );
             int indB = closeBInd.getElementDirect( closePick );
             
-            spotsLeft.deleteElement( 
-                closeBLoc.getElementDirect( closePick ) );
-        
+            int closePickLoc = closeBLoc.getElementDirect( closePick );
+            
+            spotsLeft.deleteElement( closePickLoc );
+            spotsFreq.deleteElement( closePickLoc );
+            
             //printf( "Swapping index %d with %d\n", indA, indB );
             
 
