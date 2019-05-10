@@ -785,6 +785,30 @@ int main( int inNumArgs, char **inArgs ) {
             }
 
         /*
+          // test mapping of t character
+
+        if( s == END_I ) {
+            for( int c=0; c<allClusterSizes[s]; c++ ) {            
+                if( strcmp( allClusters[s][c], "t" ) == 0 ) {
+                    int mappingFreq = 0;
+                    
+                    for( int m=0; m<allClusterSizes[s]; m++ ) {
+                        if( strcmp( allClusters[s][m],
+                                    allMappings[s][c] ) == 0 ) {
+                            mappingFreq = allClustersFreq[s][m];
+                            break;
+                            }
+                        }
+                    
+                    printf( "t (%d) -> %s (%d)\n",
+                            allClustersFreq[s][c],
+                            allMappings[s][c],
+                            mappingFreq );
+                    }
+                }
+            }
+        */
+        /*
         for( int c=0; c<allClusterSizes[s]; c++ ) {            
             printf( "Mapping %s (%d) => %s (%d)\n",
                     allClusters[s][ c ],
