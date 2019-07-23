@@ -1,0 +1,12 @@
+To generate vector files:
+
+In Inkscape:
+
+Select bitmap.
+Path->Trace Bitmap
+
+Use color, not smooth, overlapping layers.
+
+Pick the number of colors that you want (50, 100, etc.)
+
+In my tests, 100 looked good, without over-inflating the resulting file size.
