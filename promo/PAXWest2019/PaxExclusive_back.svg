@@ -10,7 +10,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="495"
-   height="342.89999"
+   height="349.20001"
    id="svg2999"
    version="1.1"
    inkscape:version="0.48.5 r10040"
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="427.77056"
-     inkscape:cy="303.55162"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="251.40872"
+     inkscape:cy="159.1799"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -36,10 +36,11 @@
      inkscape:snap-to-guides="false"
      inkscape:window-width="1170"
      inkscape:window-height="899"
-     inkscape:window-x="50"
-     inkscape:window-y="9"
+     inkscape:window-x="38"
+     inkscape:window-y="77"
      inkscape:window-maximized="0"
-     inkscape:snap-page="true">
+     inkscape:snap-page="true"
+     inkscape:showpageshadow="false">
     <sodipodi:guide
        orientation="1,0"
        position="0,315.16759"
@@ -54,8 +55,24 @@
        id="guide3076" />
     <sodipodi:guide
        orientation="0,1"
-       position="529.31993,342.9"
+       position="529.31993,349.2"
        id="guide3078" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="11.25,179.60512"
+       id="guide5371" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="-251.73001,11.25"
+       id="guide5373" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="483.75,558.61436"
+       id="guide5375" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="340.82547,337.95"
+       id="guide5377" />
   </sodipodi:namedview>
   <metadata
      id="metadata3004">
@@ -65,7 +82,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -73,70 +90,69 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-709.45975)">
+     transform="translate(0,-703.15974)">
     <rect
-       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.50000000000000000;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#000000;fill-opacity:1;stroke:none"
        id="rect3032"
        width="495"
-       height="342.89999"
+       height="349.20001"
        x="0"
-       y="-6.1035157e-06"
-       transform="translate(0,709.45975)" />
+       y="703.15973" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Bold"
        x="80.29969"
-       y="773.92737"
+       y="759.92737"
        id="text3802"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3804"
          x="80.29969"
-         y="773.92737">SCAN QR CODE:</tspan></text>
+         y="759.92737">SCAN QR CODE:</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Bold"
        x="63.114063"
-       y="1001.0633"
+       y="989.06329"
        id="text3806"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3808"
          x="63.114063"
-         y="1001.0633">OR REDEEM HERE:</tspan></text>
+         y="989.06329">OR REDEEM HERE:</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:23.18893814px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Bold"
        x="27.592779"
-       y="1029.626"
+       y="1019.626"
        id="text3810"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3812"
          x="27.592779"
-         y="1029.626">https://onehouronelife.com/redeem</tspan></text>
+         y="1019.626">https://onehouronelife.com/redeem</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:none"
        id="rect3814"
        width="110.30865"
        height="110.30865"
        x="192.34567"
-       y="789.00311" />
+       y="775.00311" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Bold"
        x="45.044998"
-       y="946.99622"
+       y="933.99622"
        id="text3816"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3818"
          x="45.044998"
-         y="946.99622"
+         y="933.99622"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ffffff;font-family:FreeMono;-inkscape-font-specification:FreeMono Bold">OL19PAX3CW82K19P4</tspan></text>
     <g
        id="g6742"
-       transform="matrix(0.55105505,0,0,0.55105505,192.43495,788.95818)">
+       transform="matrix(0.55105505,0,0,0.55105505,192.43495,774.95818)">
       <rect
          id="rect5302"
          height="200"

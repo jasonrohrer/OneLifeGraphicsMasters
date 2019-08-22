@@ -11,7 +11,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="495"
-   height="342.89999"
+   height="349.20001"
    id="svg2999"
    version="1.1"
    inkscape:version="0.48.5 r10040"
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7435335"
-     inkscape:cx="270.0562"
-     inkscape:cy="70.019721"
+     inkscape:zoom="1.487067"
+     inkscape:cx="347.33088"
+     inkscape:cy="150.46692"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -39,7 +39,8 @@
      inkscape:window-height="899"
      inkscape:window-x="50"
      inkscape:window-y="9"
-     inkscape:window-maximized="0">
+     inkscape:window-maximized="0"
+     inkscape:showpageshadow="false">
     <sodipodi:guide
        orientation="1,0"
        position="0,315.16759"
@@ -54,12 +55,24 @@
        id="guide3076" />
     <sodipodi:guide
        orientation="0,1"
-       position="529.31993,342.9"
+       position="529.31993,349.2"
        id="guide3078" />
     <sodipodi:guide
        orientation="0,1"
-       position="288.94966,9.2884182"
+       position="288.94966,11.25"
        id="guide3011" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="11.25,53.124708"
+       id="guide3077" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="483.75,43.710203"
+       id="guide3081" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="-84.730547,337.95"
+       id="guide3085" />
   </sodipodi:namedview>
   <metadata
      id="metadata3004">
@@ -77,26 +90,25 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-709.45975)">
+     transform="translate(0,-703.15974)">
     <image
-       y="709.45972"
+       y="702.74438"
        x="0"
-       id="image3069"
+       id="image3070"
        xlink:href="file:///home/jasonrohrer/cpp/OneLifeGraphicsMasters/promo/PAXWest2019/PAXExclusive.png"
-       height="342.89999"
-       width="495.29999" />
+       height="349.61539"
+       width="495" />
     <image
-       width="495.29999"
-       height="342.89999"
+       width="495"
+       height="349.61539"
        xlink:href="file:///home/jasonrohrer/cpp/OneLifeGraphicsMasters/promo/PAXWest2019/PAXExclusive_shadow.png"
-       id="image3080"
+       id="image3073"
        x="0"
-       y="709.45972"
-       style="fill:#ffffff" />
+       y="702.74438" />
     <g
        id="g3951"
-       style="fill:#ffffff"
-       transform="matrix(0.2482842,0,0,0.2482842,3.7219196,979.7264)">
+       style="fill:#ffffff;fill-opacity:1"
+       transform="matrix(0.23698879,0,0,0.23698879,14.700182,972.00393)">
       <path
          d="m 151.10815,-1052.2831 q -25.5888,0 -49.59804,9.1614 -23.693336,8.8455 -42.332091,25.5888 -18.638755,16.4274 -29.379732,39.17299 -10.425067,22.42969 -10.425067,48.65031 0,28.432 9.793244,52.75716 9.793245,24.00924 27.484266,41.70026 17.691022,17.69103 42.016177,27.48427 24.325153,9.47733 52.441243,9.47733 28.11609,0 52.44124,-9.47733 24.32516,-9.79324 42.01618,-27.16835 17.69102,-17.69103 27.48427,-42.01618 9.79324,-24.32516 9.79324,-52.75716 0,-26.22062 -10.74098,-48.65031 -10.42506,-22.74559 -29.06382,-39.17299 -18.63875,-16.7433 -42.648,-25.5888 -23.69333,-9.1614 -49.28213,-9.1614 z m 0,60.02311 q 13.58418,0 25.90471,5.05457 12.32053,5.05458 21.48196,13.90009 9.47733,8.84551 14.53191,20.53422 5.37048,11.3728 5.37048,23.37743 0,15.16373 -5.37048,28.11608 -5.05458,12.95236 -14.53191,22.7456 -9.16143,9.79325 -21.48196,15.16374 -12.32053,5.05457 -25.90471,5.05457 -13.58418,0 -25.90471,-5.05457 -12.32053,-5.37049 -21.79787,-15.16374 -9.161419,-9.79324 -14.531907,-22.7456 -5.054578,-12.95235 -5.054578,-28.11608 0,-12.00463 5.054578,-23.37743 5.370488,-11.3728 14.847817,-20.21831 9.47734,-9.16142 21.48196,-14.216 12.32053,-5.05457 25.90471,-5.05457 z"
          style="font-size:315.91110228999997389px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:100.49999952000000292%;letter-spacing:3.93700026999999997px;word-spacing:8.60160351000000034px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Bold"
@@ -170,28 +182,28 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-size:18.76744079999999926px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:2.05729795000000015px;word-spacing:0.13507511000000000px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Bold"
-       x="36.527241"
-       y="1042.681"
+       style="font-size:18.40327835000000078px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:1.06000000000000005px;word-spacing:0.68000002000000004px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Bold"
+       x="45.748096"
+       y="1032.2695"
        id="text3003"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3005"
-         x="36.527241"
-         y="1042.681"
-         style="letter-spacing:1.47000003000000001px;word-spacing:0.38999999000000002px;fill:#ffffff"
+         x="45.748096"
+         y="1032.2695"
+         style="letter-spacing:1.06000000000000005px;word-spacing:0.68000002000000004px;fill:#ffffff;fill-opacity:1"
          dx="0">PAX WEST 2019 EXCLUSIVE</tspan></text>
     <text
        sodipodi:linespacing="125%"
-       id="text3007"
-       y="1042.6857"
-       x="395.85834"
-       style="font-size:18.78812027000000029px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:1.47826134999999992px;word-spacing:1.12867248000000009px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Bold"
+       id="text3855"
+       y="1032.2695"
+       x="389.06219"
+       style="font-size:18.40327835000000078px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:1.05999993999999997px;word-spacing:0.68000000999999999px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Bold"
        xml:space="preserve"><tspan
-         style="letter-spacing:1.72999999999999998px;word-spacing:1.12867248000000009px;fill:#ffffff;fill-opacity:1"
-         y="1042.6857"
-         x="395.85834"
-         id="tspan3009"
+         style="letter-spacing:1.05999993999999997px;word-spacing:0.68000000999999999px;fill:#ffffff;fill-opacity:1"
+         y="1032.2695"
+         x="389.06219"
+         id="tspan3857"
          sodipodi:role="line">/500</tspan></text>
   </g>
 </svg>
